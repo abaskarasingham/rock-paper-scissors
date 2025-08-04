@@ -21,4 +21,36 @@ function getHumanChoice() {
     return prompt("Select rock, paper, or scissors");
 }
 
-console.log(getHumanChoice());
+function playRound(humanChoice, computerChoice) {
+    const human = humanChoice.toLowerCase();
+    let result = "";
+
+    if(human === "rock" && computerChoice === "scissors") {
+        result = "You win! Rock beats Scissors";
+        ++humanScore;
+    } else if (human === "rock" && computerChoice === "paper") {
+        result = "You lose! Paper beats Rock";
+        ++computerScore;
+    } else if (human === "paper" && computerChoice === "rock") {
+        result = "You win! Paper beats Rock";
+        ++humanScore;
+    } else if (human === "paper" && computerChoice === "scissors") {
+        result = "You lose! Scissors beats Paper";
+        ++computerScore;
+    } else if (human === "scissors" && computerChoice === "paper") {
+        result = "You win! Scissors beats Paper";
+        ++humanScore;
+    } else if (human === "scissors" && computerChoice === "rock") {
+        result = "You lose! Rock beats Scissors";
+        ++computerScore;
+    } else {
+        result = `You tied! ${human.substring(0,1).toUpperCase() + human.substring(1)} ties ${computerChoice.substring(0,1).toUpperCase() + computerChoice.substring(1)}`;
+    }
+
+    console.log(result);
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
